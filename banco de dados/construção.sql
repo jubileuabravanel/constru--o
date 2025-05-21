@@ -1,6 +1,6 @@
 -- --------------------------------------------------------
 -- Servidor:                     127.0.0.1
--- Versão do servidor:           8.0.34 - MySQL Community Server - GPL
+-- Versão do servidor:           8.0.30 - MySQL Community Server - GPL
 -- OS do Servidor:               Win64
 -- HeidiSQL Versão:              12.1.0.6537
 -- --------------------------------------------------------
@@ -15,12 +15,12 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
--- Copiando estrutura do banco de dados para construcao
-DROP DATABASE IF EXISTS `construcao`;
-CREATE DATABASE IF NOT EXISTS `construcao` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `construcao`;
+-- Copiando estrutura do banco de dados para aldair_construção
+DROP DATABASE IF EXISTS `aldair_construção`;
+CREATE DATABASE IF NOT EXISTS `aldair_construção` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `aldair_construção`;
 
--- Copiando estrutura para tabela construcao.categorias
+-- Copiando estrutura para tabela aldair_construção.categorias
 DROP TABLE IF EXISTS `categorias`;
 CREATE TABLE IF NOT EXISTS `categorias` (
   `id_categoria` int NOT NULL AUTO_INCREMENT,
@@ -29,33 +29,29 @@ CREATE TABLE IF NOT EXISTS `categorias` (
   UNIQUE KEY `nome` (`nome`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Copiando dados para a tabela construcao.categorias: ~3 rows (aproximadamente)
+-- Copiando dados para a tabela aldair_construção.categorias: ~3 rows (aproximadamente)
 INSERT INTO `categorias` (`id_categoria`, `nome`) VALUES
-	(2, 'Acabamento'),
-	(3, 'Ferramentas'),
-	(1, 'Materiais');
+	(3, 'Acabamento'),
+	(1, 'Ferramenta'),
+	(2, 'Material');
 
--- Copiando estrutura para tabela construcao.produtos
+-- Copiando estrutura para tabela aldair_construção.produtos
 DROP TABLE IF EXISTS `produtos`;
 CREATE TABLE IF NOT EXISTS `produtos` (
   `id_produto` int NOT NULL AUTO_INCREMENT,
-  `nome` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `unidade` int NOT NULL DEFAULT '0',
+  `nome` varchar(50) NOT NULL,
+  `unidade` int NOT NULL,
   `preco` decimal(10,2) NOT NULL DEFAULT '0.00',
   `categoria_id` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_produto`),
-  KEY `FK_produtos_categorias` (`categoria_id`),
+  KEY `id_categoria` (`categoria_id`) USING BTREE,
   CONSTRAINT `FK_produtos_categorias` FOREIGN KEY (`categoria_id`) REFERENCES `categorias` (`id_categoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Copiando dados para a tabela construcao.produtos: ~0 rows (aproximadamente)
+-- Copiando dados para a tabela aldair_construção.produtos: ~2 rows (aproximadamente)
 INSERT INTO `produtos` (`id_produto`, `nome`, `unidade`, `preco`, `categoria_id`) VALUES
-	(1, 'Maquita', 24, 55.00, 3),
-	(2, 'Furadeira', 25, 35.00, 3),
-	(3, 'Massa Corrida', 25, 15.00, 2),
-	(4, 'Argamassa', 34, 15.00, 2),
-	(5, 'Tijolo', 50000, 10.00, 1),
-	(6, 'Cimento', 40000, 40.00, 1);
+	(10, 'Prego', 300, 25.00, 2),
+	(11, 'Areia (Saco)', 500, 36.00, 2);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

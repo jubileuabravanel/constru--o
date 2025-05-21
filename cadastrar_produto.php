@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit;
     }
 
-    // Inserir dados no banco
+    
     $sql = "INSERT INTO produtos (nome, unidade, preco, categoria_id) VALUES (:nome, :unidade, :preco, :categoria_id)";
     $stmt = $pdo->prepare($sql);
 
@@ -36,6 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Produto</title>
+    <link rel="shortcut icon" href="./img/construcao.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>

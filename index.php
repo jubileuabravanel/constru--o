@@ -1,8 +1,8 @@
 <?php
 include 'db.php';
 
-// Filtro
-$orderBy = isset($_GET['order']) ? $_GET['order'] : 'nome'; // Ordena por nome ou preço
+
+$orderBy = isset($_GET['order']) ? $_GET['order'] : 'nome';
 
 $query = "SELECT p.id_produto, p.nome, p.unidade, p.preco, c.nome AS categoria FROM produtos p
           JOIN categorias c ON p.categoria_id = c.id_categoria ORDER BY $orderBy ASC";
@@ -15,12 +15,13 @@ $stmt = $pdo->query($query);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Controle de Estoque</title>
+    <title>Aldair Construções</title>
+    <link rel="shortcut icon" href="./img/construcao.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>Controle de Estoque - Materiais de Construção</h1>
+        <h1>Aldair Construções</h1>
         <a href="cadastrar_produto.php" class="btn">Cadastrar Novo Produto</a>
     </header>
 

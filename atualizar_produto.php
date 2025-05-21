@@ -1,11 +1,11 @@
 <?php
 include 'db.php';
 
-// Verifica se o ID do produto foi passado na URL
+
 if (isset($_GET['id'])) {
     $id_produto = $_GET['id'];
 
-    // Carrega os dados do produto a ser editado
+
     $stmt = $pdo->prepare("SELECT * FROM produtos WHERE id_produto = :id_produto");
     $stmt->bindParam(':id_produto', $id_produto);
     $stmt->execute();
@@ -20,7 +20,7 @@ if (isset($_GET['id'])) {
     exit;
 }
 
-// Processa a atualização do produto
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nome = $_POST['nome'];
     $unidade = $_POST['unidade'];
@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit;
     }
 
-    // Atualiza os dados no banco
+
     $sql = "UPDATE produtos SET nome = :nome, unidade = :unidade, preco = :preco, categoria_id = :categoria_id WHERE id_produto = :id_produto";
     $stmt = $pdo->prepare($sql);
 
@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($stmt->execute()) {
         echo "Produto atualizado com sucesso!";
-        header('Location: index.php'); // Redireciona de volta para a página inicial
+        header('Location: index.php');
     } else {
         echo "Erro ao atualizar produto!";
     }
@@ -57,6 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Atualizar Produto</title>
+    <link rel="shortcut icon" href="./img/construcao.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -79,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <label for="categoria_id">Categoria:</label>
             <select name="categoria_id" required>
                 <?php
-                // Carrega as categorias disponíveis para a seleção
+                
                 $stmt = $pdo->query("SELECT * FROM categorias");
                 while ($row = $stmt->fetch()) {
                     $selected = ($row['id_categoria'] == $produto['categoria_id']) ? 'selected' : '';

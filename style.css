@@ -6,7 +6,7 @@ body {
 }
 
 header {
-    background-color: #333;
+    background-color: #f67828;
     color: white;
     padding: 20px;
     text-align: center;
@@ -14,7 +14,7 @@ header {
 
 header a.btn {
     color: white;
-    background-color: #007BFF;
+    background-color: #f67828;
     padding: 10px 20px;
     text-decoration: none;
     border-radius: 5px;
@@ -24,7 +24,6 @@ header a.btn {
 
 .filters label[for="order"]  {
     font-weight: bold;
-    font-family: 'Times New Roman', Times, serif;
 }    
 
 .filters {
@@ -32,11 +31,11 @@ header a.btn {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
 }
 
 h1 {
     margin: 0;
+    color: #74ff73;
 }
 
 section {
@@ -82,4 +81,17 @@ form input, form select, form button {
 .stock-low {
     background-color: #f8d7da;
     color: red;
+}
+
+.form-container label[for="nome"],
+ [for="unidade"], [for="preco"],
+ [for="categoria_id"] {
+    font-weight: bolder;
+}
+
+.form-container {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
 }
